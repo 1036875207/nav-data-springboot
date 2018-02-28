@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.MediaSize;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class navController
     navRepository navRepository;
     @GetMapping(value = "navlist")
     public List<Navigation> hello(HttpServletResponse response){
-        List<Navigation> lists = navRepository.findAll();
+        List<Navigation> lists = navRepository.findByIschild(1);
         response.setHeader("Access-Control-Allow-Origin", "*");
         return lists;
     }
@@ -31,6 +32,11 @@ public class navController
             //创建单节点
             Navigation navigation=new Navigation();
             navigation.setEn_name(enname);
+            try {
+                name= URLDecoder.decode(name, "UTF-8");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             navigation.setName(name);
             navigation.setChildnum(0);
             navigation.setIschild(1);
