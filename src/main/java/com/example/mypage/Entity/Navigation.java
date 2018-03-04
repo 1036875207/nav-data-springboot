@@ -18,6 +18,15 @@ public class Navigation {
     private List<Navigation> childlist;
     private Integer childnum;
     private Integer ischild; //此属性用来判断是否是最大分类  1 是
+    private String template;
+
+    public String getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(String template) {
+        this.template = template;
+    }
 
     public List<Navigation> getChildlist() {
         return childlist;
